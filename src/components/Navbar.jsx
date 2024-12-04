@@ -1,6 +1,7 @@
 import { Button, Navbar } from "flowbite-react";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { HashLink } from "react-router-hash-link";
 
 const ReactNavbar = () => {
   const navigate = useNavigate();
@@ -13,8 +14,8 @@ const ReactNavbar = () => {
 
   return (
     <Navbar fluid rounded className="fixed top-0 left-0 w-full z-50">
-      <NavLink to="/">
-        <Navbar.Brand>
+      
+        <Navbar.Brand  onClick={()=>{window.scrollTo(0,0);navigate('/')}} className="cursor-pointer">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="mr-3 h-6 sm:h-9"
@@ -24,7 +25,7 @@ const ReactNavbar = () => {
             React Store
           </span>
         </Navbar.Brand>
-      </NavLink>
+      
       <div className="flex md:order-2">
         <Button className="mr-4" onClick={() => navigate("/Product")}>
           Start Shopping
@@ -36,7 +37,9 @@ const ReactNavbar = () => {
           <Navbar.Link active>Home</Navbar.Link>
         </NavLink>
         <Navbar.Link>About</Navbar.Link>
-        <Navbar.Link>Services</Navbar.Link>
+        <HashLink to="/#Feedbackform">
+          <Navbar.Link>Feedback</Navbar.Link>
+        </HashLink>
         <NavLink to="/Product">
           <Navbar.Link>Products</Navbar.Link>
         </NavLink>
