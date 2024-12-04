@@ -1,0 +1,51 @@
+import { Button, Navbar } from "flowbite-react";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+const ReactNavbar = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation(); // Get current route path
+
+  // Scroll to the top whenever the route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <Navbar fluid rounded className="fixed top-0 left-0 w-full z-50">
+      <NavLink to="/">
+        <Navbar.Brand>
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            className="mr-3 h-6 sm:h-9"
+            alt="Flowbite React Logo"
+          />
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            React Store
+          </span>
+        </Navbar.Brand>
+      </NavLink>
+      <div className="flex md:order-2">
+        <Button className="mr-4" onClick={() => navigate("/Product")}>
+          Start Shopping
+        </Button>
+        <Navbar.Toggle />
+      </div>
+      <Navbar.Collapse>
+        <NavLink to="/">
+          <Navbar.Link active>Home</Navbar.Link>
+        </NavLink>
+        <Navbar.Link>About</Navbar.Link>
+        <Navbar.Link>Services</Navbar.Link>
+        <NavLink to="/Product">
+          <Navbar.Link>Products</Navbar.Link>
+        </NavLink>
+        <NavLink to="/Cart">
+          <Navbar.Link>Cart</Navbar.Link>
+        </NavLink>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
+
+export default ReactNavbar;
