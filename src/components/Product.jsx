@@ -2,20 +2,19 @@ import { useEffect, useState } from "react";
 import { useCart } from "../context/cartContext";
 import { FaRegStar } from "react-icons/fa";
 import { Button, Spinner, Pagination } from "flowbite-react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Product = () => {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([]);
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6; // Number of products per page
+  const productsPerPage = 6;
 
-  // Get the current products to display based on currentPage
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = product.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  const totalPages = Math.ceil(product.length / productsPerPage); // Calculate total pages
+  const totalPages = Math.ceil(product.length / productsPerPage);
 
   useEffect(() => {
     const fetchFunction = async () => {
@@ -26,7 +25,7 @@ const Product = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false); // Set loading to false once the data is fetched
+        setLoading(false);
       }
     };
     fetchFunction();
@@ -34,7 +33,7 @@ const Product = () => {
 
   const onPageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo(0, 0); // Scroll to the top on page change
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -70,18 +69,26 @@ const Product = () => {
                     <FaRegStar className="text-amber-400 mr-2 text-lg" />
                     <span className="text-gray-600">{item.rating.rate} / 5</span>
                   </div>
+
                   <button
                     onClick={() => addToCart(item)}
                     className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition"
                   >
                     Add to Cart
                   </button>
+
+                  {/* New "View Product" button */}
+                  <Link to={`/product/${item.id}`}>
+                    <button className="ml-2 bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-700 transition mt-2">
+                      View Product
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Pagination Component */}
+          {/* Pagination */}
           <div className="flex justify-center mt-10">
             <Pagination
               currentPage={currentPage}
@@ -97,6 +104,5 @@ const Product = () => {
 };
 
 export default Product;
-
 
 
