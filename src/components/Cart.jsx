@@ -60,7 +60,7 @@ const Cart = () => {
               </button>
             </div>
           ))}
-          <div className="text-right">
+          <div className="text-right mr-2">
             <h3 className="text-2xl font-bold">Total: ${calculateTotalPrice()}</h3>
           </div>
         </div>

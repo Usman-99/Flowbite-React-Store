@@ -77,7 +77,7 @@ const handleSubmit=(e)=>{
         </Sidebar>
 
         {/* Form Section */}
-        <section id="Feedbackform" className="flex-grow flex justify-center">
+        <section id="Feedbackform" className="flex-grow flex justify-center mb-5">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg w-full mx-auto lg:w-[600px] lg:ml-auto"><br/><br/>
           <h1 className="text-4xl font-bold text-center mb-8">Give Feedback</h1>
             <div>
