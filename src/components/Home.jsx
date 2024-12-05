@@ -10,6 +10,7 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import CustomButton from "./Buttons";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -157,8 +158,8 @@ const Home = () => {
               <Checkbox id="remember" />
               <Label htmlFor="remember">Remember me</Label>
             </div>
-
-            <Button type="submit">Submit</Button>
+            <CustomButton Text={"Submit"} />
+            {/* <Button type="submit">Submit</Button> */}
           </form>
         </section>
       </div>
