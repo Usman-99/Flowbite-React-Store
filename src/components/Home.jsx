@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import {useState} from "react"
 import { Label, TextInput, Button, Checkbox, Sidebar } from "flowbite-react";
 import {
   HiArrowSmRight,
@@ -11,6 +12,13 @@ import {
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const[name,setName]=useState('')
+  const[email,setEmail]=useState('')
+  const[feedback,setFeedback]=useState('')
+const handleSubmit=(e)=>{
+  e.preventDefault();
+  alert(`Form submitted with name ${name} , email ${email} and feedback ${feedback}`)
+}
   return (
     <>
       {/* Carousel */}
@@ -70,13 +78,15 @@ const Home = () => {
 
         {/* Form Section */}
         <section id="Feedbackform" className="flex-grow flex justify-center">
-          <form className="flex flex-col gap-4 max-w-lg w-full mx-auto lg:w-[600px] lg:ml-auto"><br/><br/>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg w-full mx-auto lg:w-[600px] lg:ml-auto"><br/><br/>
           <h1 className="text-4xl font-bold text-center mb-8">Give Feedback</h1>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Your name" />
               </div>
-              <TextInput id="name" type="text" placeholder="Name" required />
+              <TextInput id="name" type="text" placeholder="Name" required name="name" value={name} onChange={(e)=>{
+                setName(e.target.value)
+              }}/>
             </div>
 
             <div>
@@ -85,9 +95,13 @@ const Home = () => {
               </div>
               <TextInput
                 id="email"
+                value={email}
                 type="email"
                 placeholder="name@flowbite.com"
                 required
+                onChange={(e)=>{
+                  setEmail(e.target.value)
+                }}
               />
             </div>
 
@@ -95,7 +109,9 @@ const Home = () => {
               <div className="mb-2 block">
                 <Label htmlFor="large" value="Give your Feedback" />
               </div>
-              <TextInput id="feedback" type="text" sizing="lg" required />
+              <TextInput value={feedback} id="feedback" type="text" sizing="lg" required onChange={(e)=>{
+                  setFeedback(e.target.value)
+                }}/>
             </div>
 
             <div className="flex items-center gap-2">
