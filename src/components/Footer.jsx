@@ -32,7 +32,7 @@ const ReactFooter = () => {
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
-                <Link to="/">
+                <Link to="/" onClick={()=>window.scrollTo(0,0)}>
                   <Footer.Link>React Store</Footer.Link>
                 </Link>
                 <Link to="/Product">

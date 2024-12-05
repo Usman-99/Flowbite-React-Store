@@ -33,7 +33,7 @@ const ReactNavbar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <NavLink to="/">
+        <NavLink to="/" onClick={()=>window.scrollTo(0,0)}>
           <Navbar.Link active>Home</Navbar.Link>
         </NavLink>
         <Navbar.Link>About</Navbar.Link>
