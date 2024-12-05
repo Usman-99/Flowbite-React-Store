@@ -1,5 +1,5 @@
 import { Carousel } from "flowbite-react";
-import {useState} from "react"
+import { useState } from "react";
 import { Label, TextInput, Button, Checkbox, Sidebar } from "flowbite-react";
 import {
   HiArrowSmRight,
@@ -12,13 +12,31 @@ import {
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const[name,setName]=useState('')
-  const[email,setEmail]=useState('')
-  const[feedback,setFeedback]=useState('')
-const handleSubmit=(e)=>{
-  e.preventDefault();
-  alert(`Form submitted with name ${name} , email ${email} and feedback ${feedback}`)
-}
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    feedback: "",
+  });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value, // Update the specific input field in the state
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(
+      `Form submitted with name: ${formData.name}, email: ${formData.email} and feedback: ${formData.feedback}`
+    );
+    // Reset form fields
+    setFormData({
+      name: "",
+      email: "",
+      feedback: "",
+    });
+  };
   return (
     <>
       {/* Carousel */}
@@ -77,16 +95,32 @@ const handleSubmit=(e)=>{
         </Sidebar>
 
         {/* Form Section */}
-        <section id="Feedbackform" className="flex-grow flex justify-center mb-5">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg w-full mx-auto lg:w-[600px] lg:ml-auto"><br/><br/>
-          <h1 className="text-4xl font-bold text-center mb-8">Give Feedback</h1>
+        <section
+          id="Feedbackform"
+          className="flex-grow flex justify-center mb-5"
+        >
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 max-w-lg w-full mx-auto lg:w-[600px] lg:ml-auto"
+          >
+            <br />
+            <br />
+            <h1 className="text-4xl font-bold text-center mb-8">
+              Give Feedback
+            </h1>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Your name" />
               </div>
-              <TextInput id="name" type="text" placeholder="Name" required name="name" value={name} onChange={(e)=>{
-                setName(e.target.value)
-              }}/>
+              <TextInput
+                id="name"
+                type="text"
+                placeholder="Name"
+                required
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
             </div>
 
             <div>
@@ -95,13 +129,12 @@ const handleSubmit=(e)=>{
               </div>
               <TextInput
                 id="email"
-                value={email}
+                value={formData.email}
                 type="email"
-                placeholder="name@flowbite.com"
+                name="email"
+                placeholder="name@reactstorecom"
                 required
-                onChange={(e)=>{
-                  setEmail(e.target.value)
-                }}
+                onChange={handleChange}
               />
             </div>
 
@@ -109,9 +142,15 @@ const handleSubmit=(e)=>{
               <div className="mb-2 block">
                 <Label htmlFor="large" value="Give your Feedback" />
               </div>
-              <TextInput value={feedback} id="feedback" type="text" sizing="lg" required onChange={(e)=>{
-                  setFeedback(e.target.value)
-                }}/>
+              <TextInput
+                name="feedback"
+                value={formData.feedback}
+                id="feedback"
+                type="text"
+                sizing="lg"
+                required
+                onChange={handleChange}
+              />
             </div>
 
             <div className="flex items-center gap-2">
