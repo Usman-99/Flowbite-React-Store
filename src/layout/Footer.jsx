@@ -1,4 +1,4 @@
-import { Footer } from "flowbite-react";
+import { Footer, FooterBrand } from "flowbite-react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -20,12 +20,12 @@ const ReactFooter = () => {
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
-              <Footer.Brand
+              <Link to="/"><Footer.Brand
                 src="https://flowbite.com/docs/images/logo.svg"
-                href="#"
+                href="/"
                 alt="Flowbite Logo"
                 name="React Store"
-              />
+              ></Footer.Brand></Link>
             
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">

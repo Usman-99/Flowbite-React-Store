@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // To extract product ID from URL
-import { Spinner, Button } from "flowbite-react";
 import { useCart } from "../context/cartContext";
+import SpinnerButton from "../components/SpinnerButton";
+import CustomButton from "../components/Buttons";
 
 const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
@@ -26,11 +27,13 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="text-center text-lg flex justify-center items-center py-20">
-        <Button>
-          <Spinner aria-label="Spinner button example" size="lg" />
-          <span className="pl-3 pt-1">Loading...</span>
-        </Button>
+      <div className="py-20 mb-[50%] md:mb-[80%] lg:mb-[75%] xl:mb-[15%]">
+        
+        <SpinnerButton
+          SpinnerSize="lg"
+          Text={"Loading ..."}
+          TextClass="pl-3 pt-1"
+        />
       </div>
     );
   }
@@ -59,10 +62,11 @@ const ProductDetail = () => {
             </p>
             <p className="text-gray-500">({product.rating.count} reviews)</p>
           </div>
-
-          <Button onClick={() => addToCart(product)} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Add to Cart
-          </Button>
+          <CustomButton
+            Text={" Add to Cart"}
+            className="bg-blue-500"
+            onClick={() => addToCart(product)}
+          />
         </div>
       </div>
     </div>

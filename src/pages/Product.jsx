@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../context/cartContext";
 import { FaRegStar } from "react-icons/fa";
-import { Button, Spinner, Pagination } from "flowbite-react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Pagination } from "flowbite-react";
+import { Link } from "react-router-dom";
+import CustomButton from "../components/Buttons";
+import SpinnerButton from "../components/SpinnerButton";
 
 const Product = () => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,10 @@ const Product = () => {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = product.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = product.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   const totalPages = Math.ceil(product.length / productsPerPage);
 
   useEffect(() => {
@@ -37,16 +42,15 @@ const Product = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 mt-20">
+    <div className="container mx-auto pt-4 py-10 mt-20">
       <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
-      
       {loading ? (
-        <div className="text-center text-lg flex justify-center items-center">
-          <Button>
-            <Spinner aria-label="Spinner button example" size="lg" />
-            <span className="pl-3 pt-1">Loading...</span>
-          </Button>
-        </div>
+        <div className="mb-[50%] md:mb-[80%] lg:mb-[75%] xl:mb-[15%]">
+        <SpinnerButton
+          SpinnerSize="lg"
+          Text={"Loading ..."}
+          TextClass="pl-3 pt-1"
+        /></div>
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,22 +71,23 @@ const Product = () => {
                   <p className="text-gray-700 mb-3">${item.price}</p>
                   <div className="flex items-center mb-3">
                     <FaRegStar className="text-amber-400 mr-2 text-lg" />
-                    <span className="text-gray-600">{item.rating.rate} / 5</span>
+                    <span className="text-gray-600">
+                      {item.rating.rate} / 5
+                    </span>
                   </div>
-
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition"
-                  >
-                    Add to Cart
-                  </button>
-
-                  {/* New "View Product" button */}
-                  <Link to={`/product/${item.id}`}>
-                    <button className="ml-2 bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-700 transition mt-2">
-                      View Product
-                    </button>
-                  </Link>
+                  <div className="flex justify-center items-center">
+                    <CustomButton
+                      Text={"Add to Cart"}
+                      onClick={() => addToCart(item)}
+                      className="bg-blue-500"
+                    />
+                    <Link to={`/product/${item.id}`}>
+                      <CustomButton
+                        Text={"View Product"}
+                        className={"bg-emerald-600 ml-2"}
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -104,5 +109,3 @@ const Product = () => {
 };
 
 export default Product;
-
-
