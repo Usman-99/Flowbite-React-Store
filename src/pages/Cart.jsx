@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../context/cartContext";
-import { FaTrashAlt } from "react-icons/fa"; // Import an icon for removing items
+import { FaTrashAlt } from "react-icons/fa"; 
+import CustomButton from "../components/Buttons";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
@@ -38,19 +39,21 @@ const Cart = () => {
                 <p className="text-gray-700">${item.price}</p>
               </div>
               <div className="flex items-center">
-                <button
+                {/* <button
                   onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                   className="bg-gray-300 px-2 rounded-l"
                 >
                   -
-                </button>
+                </button> */}
+                <CustomButton onClick={() => handleQuantityChange(item.id, item.quantity - 1)} className="bg-gray-300 text-black" Text={"-"}/>
                 <span className="px-4">{item.quantity}</span>
-                <button
+               {/* <button
                   onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                   className="bg-gray-300 px-2 rounded-r"
                 >
-                  +
-                </button>
+                  + 
+                </button> */}
+                <CustomButton onClick={() => handleQuantityChange(item.id, item.quantity + 1)} className="bg-gray-300 text-black" Text={"+"}/>
               </div>
               <button
                 onClick={() => removeFromCart(item.id)}
