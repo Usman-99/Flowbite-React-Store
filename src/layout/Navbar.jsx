@@ -62,7 +62,6 @@ const ReactNavbar = () => {
         >
           <Navbar.Link active>Home</Navbar.Link>
         </NavLink>
-        <Navbar.Link>About</Navbar.Link>
         <HashLink smooth to="/#Feedbackform">
           <Navbar.Link>Feedback</Navbar.Link>
         </HashLink>
