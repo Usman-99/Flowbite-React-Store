@@ -219,6 +219,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import SpinnerButton from "../components/SpinnerButton";
 import CustomCard from "../components/Card";
 import CustomButton from "../components/Buttons";
+import apiService from "../api/dataservice";
 
 const Product = () => {
   const navigate = useNavigate();
@@ -246,18 +247,24 @@ const Product = () => {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   useEffect(() => {
-    const fetchFunction = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
+    
+    // const fetchProducts = async () => {
+    //   try {
+    //     const data = await apiService.get("/products"); // Just pass the endpoint
+    //     setProduct(data); // Directly set the data without extra error handling
+    //   } catch (error) {
+    //     console.error("Error fetching products:", error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
+    // fetchProducts();
+    const fetchProducts = async () => {
+      const data = await apiService.get("/products"); // Pass the endpoint
+      setProduct(data); // No need to handle try/catch in the component
+      setLoading(false);
     };
-    fetchFunction();
+    fetchProducts();
   }, []);
 
   const onPageChange = (page) => {
@@ -285,7 +292,7 @@ const Product = () => {
       <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
 
       {/* Category Filters */}
-      <div className="flex justify-center mb-8 space-x-4">
+      <div className="ml-4 mr-4 sm:ml-4 sm:mr-4  lg:justify-center my-5 flex gap-3 overflow-x-scroll scroll-smooth lg:overflow-x-hidden">
       {categoryList.map((item) => (
           <CustomButton
             key={item.value}

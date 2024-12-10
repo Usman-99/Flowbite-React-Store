@@ -8,7 +8,7 @@ const CustomCard = ({ image, title, price,description, showDescription=false, ra
       <div className="p-5 text-center">
         <h3 className="text-md lg:text-lg xl:text-lg font-bold mb-2">{title}</h3>
         
-        {showDescription &&  (<p className="mb-5 mt-3 text-md font-bold px-8">{description}</p>)}
+        {showDescription &&  (<p className="mb-5 mt-3 text-md px-8">{description}</p>)}
         <p className="text-gray-700 mb-3">${price}</p>
         {showRating && (
           <div className="flex justify-center items-center mb-3">
