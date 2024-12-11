@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
 import CustomButton from "../components/Buttons";
 
+
 const ReactNavbar = () => {
   const navigate = useNavigate();
   const { pathname, hash } = useLocation(); // Get current route path and hash

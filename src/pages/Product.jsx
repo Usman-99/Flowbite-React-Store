@@ -248,21 +248,15 @@ const Product = () => {
 
   useEffect(() => {
     
-    // const fetchProducts = async () => {
-    //   try {
-    //     const data = await apiService.get("/products"); // Just pass the endpoint
-    //     setProduct(data); // Directly set the data without extra error handling
-    //   } catch (error) {
-    //     console.error("Error fetching products:", error);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-    // fetchProducts();
     const fetchProducts = async () => {
-      const data = await apiService.get("/products"); // Pass the endpoint
-      setProduct(data); // No need to handle try/catch in the component
-      setLoading(false);
+      try {
+        const data = await apiService.get("/products"); // Just pass the endpoint
+        setProduct(data); // Directly set the data without extra error handling
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, []);
