@@ -3,7 +3,7 @@ import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
 import CustomButton from "../components/Buttons";
-
+import { pages } from "../constants/base";
 
 const ReactNavbar = () => {
   const navigate = useNavigate();
@@ -54,34 +54,16 @@ const ReactNavbar = () => {
         />
         <Navbar.Toggle />
       </div>
-      <Navbar.Collapse>
-        <NavLink
-          to="/"
+      <Navbar.Collapse>{pages.map((page)=>page.name==="Feedback" ? (<HashLink smooth to={page.path}>
+          <Navbar.Link>{page.name}</Navbar.Link>
+        </HashLink>):(<NavLink
+          to={page.path}
           onClick={() => {
-            if (pathname === "/") scrollToTop(); // Scroll to top if already on Home page
+            if (pathname === page.path) scrollToTop(); // Scroll to top if already on Home page
           }}
         >
-          <Navbar.Link active>Home</Navbar.Link>
-        </NavLink>
-        <HashLink smooth to="/#Feedbackform">
-          <Navbar.Link>Feedback</Navbar.Link>
-        </HashLink>
-        <NavLink
-          to="/Product"
-          onClick={() => {
-            if (pathname === "/Product") scrollToTop(); // Scroll to top if already on Products page
-          }}
-        >
-          <Navbar.Link>Products</Navbar.Link>
-        </NavLink>
-        <NavLink
-          to="/Cart"
-          onClick={() => {
-            if (pathname === "/Cart") scrollToTop(); // Scroll to top if already on Cart page
-          }}
-        >
-          <Navbar.Link>Cart</Navbar.Link>
-        </NavLink>
+          <Navbar.Link active>{page.name}</Navbar.Link>
+        </NavLink>))}
       </Navbar.Collapse>
     </Navbar>
   );

@@ -1,6 +1,6 @@
-import { Footer, FooterBrand } from "flowbite-react";
+import { Footer } from "flowbite-react";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   BsDribbble,
   BsFacebook,
@@ -9,9 +9,21 @@ import {
   BsTwitter,
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { pages } from "../constants/base";
 
 const ReactFooter = () => {
-  const navigate = useNavigate();
+  const footericons = [
+    BsFacebook,
+    BsInstagram,
+    BsTwitter,
+    BsGithub,
+    BsDribbble,
+  ];
+  const footerlinks = [
+    { name: "Follow us", link1: "Github", link2: "Discord" },
+    { name: "Legal", link1: "Privacy Policy", link2: "Terms & Conditions" },
+  ];
   const { pathname, hash } = useLocation(); // Get current route path and hash
 
   // Function to scroll to top
@@ -29,7 +41,7 @@ const ReactFooter = () => {
     }
   }, [pathname, hash]);
   return (
-    <Footer container>
+    <Footer container className="bg-gray-300 text-black">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
@@ -51,57 +63,42 @@ const ReactFooter = () => {
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
-                <Link
-                  to="/"
-                  onClick={() => {
-                    if (pathname === "/") scrollToTop();
-                  }}
-                >
-                  <Footer.Link>React Store</Footer.Link>
-                </Link>
-                <Link
-                  to="/Product"
-                  onClick={() => {
-                    if (pathname === "/Product") scrollToTop(); // Scroll to top if already on Home page
-                  }}
-                >
-                  <Footer.Link>Products</Footer.Link>
-                </Link>
-                <Link
-                  to="/Cart"
-                  onClick={() => {
-                    if (pathname === "/Cart") scrollToTop(); // Scroll to top if already on Home page
-                  }}
-                >
-                  <Footer.Link>Cart</Footer.Link>
-                </Link>
+                {pages.map((page) =>
+                  page.name === "Feedback" ? (
+                    <HashLink smooth to={page.path}>
+                      <Footer.Link>{page.name}</Footer.Link>
+                    </HashLink>
+                  ) : (
+                    <Link
+                      to={page.path}
+                      onClick={() => {
+                        if (pathname === page.path) scrollToTop();
+                      }}
+                    >
+                      <Footer.Link>{page.name}</Footer.Link>
+                    </Link>
+                  )
+                )}
               </Footer.LinkGroup>
             </div>
-            <div>
-              <Footer.Title title="Follow us" />
-              <Footer.LinkGroup col>
-                <Footer.Link>Github</Footer.Link>
-                <Footer.Link>Discord</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-            <div>
-              <Footer.Title title="Legal" />
-              <Footer.LinkGroup col>
-                <Footer.Link>Privacy Policy</Footer.Link>
-                <Footer.Link>Terms &amp; Conditions</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
+            {footerlinks.map((item) => (
+              <div>
+                <Footer.Title title={item.name} />
+                <Footer.LinkGroup col>
+                  <Footer.Link>{item.link1}</Footer.Link>
+                  <Footer.Link>{item.link2}</Footer.Link>
+                </Footer.LinkGroup>
+              </div>
+            ))}
           </div>
         </div>
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright href="#" by="React Store™" year={2024} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <Footer.Icon icon={BsFacebook} />
-            <Footer.Icon icon={BsInstagram} />
-            <Footer.Icon icon={BsTwitter} />
-            <Footer.Icon icon={BsGithub} />
-            <Footer.Icon icon={BsDribbble} />
+            {footericons.map((icon) => (
+              <Footer.Icon icon={icon} />
+            ))}
           </div>
         </div>
       </div>
