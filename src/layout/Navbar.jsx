@@ -8,7 +8,6 @@ import { pages } from "../constants/base";
 const ReactNavbar = () => {
   const navigate = useNavigate();
   const { pathname, hash } = useLocation(); // Get current route path and hash
-
   // Function to scroll to top
   const scrollToTop = () => {
     window.scrollTo({
@@ -16,7 +15,6 @@ const ReactNavbar = () => {
       behavior: "smooth", // Smooth scrolling to top
     });
   };
-
   // Scroll to the top whenever the route changes or when the same link is clicked
   useEffect(() => {
     if (!hash) {
@@ -42,7 +40,6 @@ const ReactNavbar = () => {
           React Store
         </span>
       </Navbar.Brand>
-
       <div className="flex md:order-2">
         <CustomButton
           Text={"Start Shopping"}
@@ -62,7 +59,7 @@ const ReactNavbar = () => {
             if (pathname === page.path) scrollToTop(); // Scroll to top if already on Home page
           }}
         >
-          <Navbar.Link active>{page.name}</Navbar.Link>
+          <Navbar.Link>{page.name}</Navbar.Link>
         </NavLink>))}
       </Navbar.Collapse>
     </Navbar>

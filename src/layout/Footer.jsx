@@ -40,8 +40,9 @@ const ReactFooter = () => {
       scrollToTop(); // Scroll to top for all routes except hash (like feedback section)
     }
   }, [pathname, hash]);
+
   return (
-    <Footer container className="bg-gray-300 text-black">
+    <Footer container className="bg-gray-300">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
@@ -52,7 +53,7 @@ const ReactFooter = () => {
               }}
             >
               <Footer.Brand
-                src="https://flowbite.com/docs/images/logo.svg"
+                src="https://flowbite.com/docs/images/logo.svg" 
                 href="/"
                 alt="Flowbite Logo"
                 name="React Store"
@@ -61,8 +62,8 @@ const ReactFooter = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
-              <Footer.Title title="about" />
-              <Footer.LinkGroup col>
+              <Footer.Title title="about" className="text-black" />
+              <Footer.LinkGroup col className="text-black">
                 {pages.map((page) =>
                   page.name === "Feedback" ? (
                     <HashLink smooth to={page.path}>
@@ -82,9 +83,9 @@ const ReactFooter = () => {
               </Footer.LinkGroup>
             </div>
             {footerlinks.map((item) => (
-              <div>
-                <Footer.Title title={item.name} />
-                <Footer.LinkGroup col>
+              <div key={item.name}>
+                <Footer.Title title={item.name} className="text-black"/>
+                <Footer.LinkGroup col className="text-black">
                   <Footer.Link>{item.link1}</Footer.Link>
                   <Footer.Link>{item.link2}</Footer.Link>
                 </Footer.LinkGroup>
@@ -96,8 +97,8 @@ const ReactFooter = () => {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright href="#" by="React Store™" year={2024} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            {footericons.map((icon) => (
-              <Footer.Icon icon={icon} />
+            {footericons.map((icon, index) => (
+              <Footer.Icon key={index} icon={icon} />
             ))}
           </div>
         </div>
@@ -105,4 +106,5 @@ const ReactFooter = () => {
     </Footer>
   );
 };
+
 export default ReactFooter;
