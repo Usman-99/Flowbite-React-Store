@@ -6,8 +6,8 @@ const MainContainer = () => {
   const items = ["hello", "world"];
   return (
     <div className="flex flex-col min-h-screen">
-      <ReactNavbar />
-      <div className="flex-grow py-3">
+      <ReactNavbar/>
+      <div className="flex-grow py-3 mt-10">
         <Outlet context={{ text, items }} />
       </div>
       <ReactFooter/>
