@@ -23,9 +23,9 @@ const Cart = () => {
       <h1 className="text-4xl font-bold text-center mb-8">Your Cart</h1>
 
       {cart.length === 0 ? (
-        <p className="text-center text-lg mb-[50%] md:mb-[40%] lg:mb-[55%] xl:mb-[45%] ">Your cart is empty</p>
+        <p className="text-center text-lg mb-10">Your cart is empty</p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 mb-[40%] md:mb-[30%] lg:mb-[15%] xl:mb-[10%]">
+        <div className="grid grid-cols-1 gap-8 mb-10">
           {cart.map((item) => (
             <div
               key={item.id}
