@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
-import MainContainer from "../container/maincontainer";
+import MainContainer from "../container/MainContainer";
 import ProductDetail from "../pages/SingleProduct";
 import FormTable from "../pages/PersonDetails";
 function AllRoutes() {
