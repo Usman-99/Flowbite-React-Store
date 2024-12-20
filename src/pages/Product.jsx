@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCart } from "../context/cartContext";
+import {useAppContext} from "../context/commonContext"
 import { Pagination } from "flowbite-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SpinnerButton from "../components/SpinnerButton";
@@ -14,7 +14,7 @@ const Product = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([]);
-  const { addToCart } = useCart();
+  const { addToCart } = useAppContext();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
 

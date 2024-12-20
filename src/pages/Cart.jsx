@@ -1,10 +1,8 @@
-import React from "react";
-import { useCart } from "../context/cartContext";
+import { useAppContext } from "../context/commonContext";
 import { FaTrashAlt } from "react-icons/fa";
 import CustomButton from "../components/Buttons";
 
-const Cart = () => {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+const Cart = () => {  const { cart, removeFromCart, updateQuantity } = useAppContext();
 
   const handleQuantityChange = (id, change) => {
     const item = cart.find((item) => item.id === id);

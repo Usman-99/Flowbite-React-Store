@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Table } from "flowbite-react";
 import CustomButton from "../components/Buttons";
-import { FormContext } from "../context/formContext"; // Import the context
+import { useAppContext } from "../context/commonContext"; // Import the context
 
 export function FormTable() {
-  const { formDataList, deleteFormData } = useContext(FormContext); // Access context
+  const { formDataList, deleteFormData } = useAppContext(); // Access context
   const commonsxObj={
     wordWrap: "break-word", // Allow text to wrap to the next line
     whiteSpace: "normal",   // Ensure long text doesn't stay on one line

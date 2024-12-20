@@ -1,7 +1,6 @@
-import {  useContext } from "react";
 import { Label, TextInput, Checkbox } from "flowbite-react";
 import CustomButton from "./Buttons";
-import { FormContext } from "../context/formContext";
+import { useAppContext } from "../context/commonContext";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 const ErrorComponent = ({ Text }) => (
@@ -32,7 +31,7 @@ const formik=useFormik({
 
   })
 })
-  const { addFormData } = useContext(FormContext); // Access context
+  const { addFormData } = useAppContext(); // Access context
 
 
   const handleSubmit = (value) => {

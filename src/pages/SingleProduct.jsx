@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../context/cartContext";
+import { useAppContext } from "../context/commonContext";
 import CustomCard from "../components/Card";
 import SpinnerButton from "../components/SpinnerButton";
 
@@ -8,7 +8,8 @@ const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useCart();
+
+  const { addToCart } = useAppContext();
 
   useEffect(() => {
     const fetchProduct = async () => {
