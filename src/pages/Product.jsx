@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCart } from "../context/cartContext";
+import {useAppContext} from "../context/commonContext"
 import { Pagination } from "flowbite-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SpinnerButton from "../components/SpinnerButton";
@@ -14,7 +14,7 @@ const Product = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([]);
-  const { addToCart } = useCart();
+  const { addToCart } = useAppContext();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
 
@@ -70,7 +70,7 @@ const Product = () => {
     { label: "Electronics", value: "electronics" },
   ];
   return (
-    <div className="container mx-auto pt-4 py-10 mt-20">
+    <div className="container mx-auto pt-4 py-10 mt-6">
       <h1 className="text-4xl font-bold text-center mb-8">{text}</h1>
 
       {/* Category Filters */}

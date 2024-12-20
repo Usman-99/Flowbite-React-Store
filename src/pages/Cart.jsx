@@ -1,10 +1,8 @@
-import React from "react";
-import { useCart } from "../context/cartContext";
+import { useAppContext } from "../context/commonContext";
 import { FaTrashAlt } from "react-icons/fa";
 import CustomButton from "../components/Buttons";
 
-const Cart = () => {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+const Cart = () => {  const { cart, removeFromCart, updateQuantity } = useAppContext();
 
   const handleQuantityChange = (id, change) => {
     const item = cart.find((item) => item.id === id);
@@ -19,7 +17,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto pt-4 py-10 mt-20">
+    <div className="container mx-auto pt-4 py-10 mt-5">
       <h1 className="text-4xl font-bold text-center mb-8">Your Cart</h1>
 
       {cart.length === 0 ? (

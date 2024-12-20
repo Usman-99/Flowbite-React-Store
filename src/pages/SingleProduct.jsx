@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../context/cartContext";
+import { useAppContext } from "../context/commonContext";
 import CustomCard from "../components/Card";
 import SpinnerButton from "../components/SpinnerButton";
 
@@ -8,7 +8,8 @@ const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useCart();
+
+  const { addToCart } = useAppContext();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -27,14 +28,14 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="py-20 mb-[50%] md:mb-[40%] lg:mb-[55%] xl:mb-[45%]">
+      <div className="py-20 mb-5">
         <SpinnerButton SpinnerSize="lg" Text={"Loading ..."} TextClass="pl-3 pt-1" />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-10 mt-20 px-4 mb-10">
+    <div className="container mx-auto py-10 mt-5 px-4 mb-2">
       <CustomCard
         image={product.image}
         title={product.title}

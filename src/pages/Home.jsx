@@ -2,6 +2,7 @@ import CustomCarousel from "../components/Carousel";
 import FeedbackForm from "../components/FeedbackForm"; // Adjust the path
 import CustomSidebar from "../components/CustomSidebar"; // Adjust the path
 
+
 const Home = () => {
   const imglist = [
     {
@@ -25,15 +26,9 @@ const Home = () => {
       alt: "img5",
     },
   ];
-  const handleFormSubmit = (formData) => {
-    alert(
-      `Form submitted with name: ${formData.name}, email: ${formData.email}, and feedback: ${formData.feedback}`
-    );
-  };
 
   return (
     <>
-  
       <CustomCarousel sliderReq={true} imglist={imglist} />
 
       {/* Sidebar and Form Layout */}
@@ -42,11 +37,8 @@ const Home = () => {
         <CustomSidebar />
 
         {/* Form Section */}
-        <section
-          id="Feedbackform"
-          className="flex-grow flex justify-center mb-5"
-        >
-          <FeedbackForm onSubmit={handleFormSubmit} />
+        <section id="Feedbackform" className="flex-grow flex justify-center mb-5">
+          <FeedbackForm />
         </section>
       </div>
     </>
