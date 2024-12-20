@@ -28,14 +28,14 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="py-20 mb-[50%] md:mb-[40%] lg:mb-[55%] xl:mb-[45%]">
+      <div className="py-20 mb-5">
         <SpinnerButton SpinnerSize="lg" Text={"Loading ..."} TextClass="pl-3 pt-1" />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-10 mt-20 px-4 mb-10">
+    <div className="container mx-auto py-10 mt-5 px-4 mb-2">
       <CustomCard
         image={product.image}
         title={product.title}
