@@ -1,6 +1,5 @@
 import { Footer } from "flowbite-react";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import useScrollToTop from "../hooks/useScrollToTop";
 import {
   BsDribbble,
   BsFacebook,
@@ -11,8 +10,10 @@ import {
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { pages } from "../constants/base";
+import { scrollToTop } from "../utils/commonFunction"
 
 const ReactFooter = () => {
+  useScrollToTop()
   const footericons = [
     BsFacebook,
     BsInstagram,
@@ -24,23 +25,6 @@ const ReactFooter = () => {
     { name: "Follow us", link1: "Github", link2: "Discord" },
     { name: "Legal", link1: "Privacy Policy", link2: "Terms & Conditions" },
   ];
-  const { pathname, hash } = useLocation(); // Get current route path and hash
-
-  // Function to scroll to top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Smooth scrolling to top
-    });
-  };
-
-  // Scroll to the top whenever the route changes or when the same link is clicked
-  useEffect(() => {
-    if (!hash) {
-      scrollToTop(); // Scroll to top for all routes except hash (like feedback section)
-    }
-  }, [pathname, hash]);
-
   return (
     <Footer container className="bg-gray-300">
       <div className="w-full">
@@ -48,13 +32,11 @@ const ReactFooter = () => {
           <div>
             <Link
               to="/"
-              onClick={() => {
-                if (pathname === "/") scrollToTop(); // Scroll to top if already on Home page
-              }}
+              onClick={scrollToTop}
             >
               <Footer.Brand
                 src="https://flowbite.com/docs/images/logo.svg" 
-                href="/"
+                href="/aa"
                 alt="Flowbite Logo"
                 name="React Store"
               ></Footer.Brand>
@@ -72,9 +54,7 @@ const ReactFooter = () => {
                   ) : (
                     <Link
                       to={page.path}
-                      onClick={() => {
-                        if (pathname === page.path) scrollToTop();
-                      }}
+                      onClick={scrollToTop}
                     >
                       <Footer.Link>{page.name}</Footer.Link>
                     </Link>
